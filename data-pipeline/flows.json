@@ -1,0 +1,746 @@
+[
+    {
+        "id": "7ba8d1fbe3577553",
+        "type": "tab",
+        "label": "AMI Supervisor",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "db95e3904045023d",
+        "type": "tab",
+        "label": "Demo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "04d178d1f5eb0ee8",
+        "type": "tab",
+        "label": "Demo 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "69bbb4abf95a3782",
+        "type": "tab",
+        "label": "Logs",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2d31d969126907db",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mosquitto/ws/",
+        "port": "9001",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "9f7511e86e72a8f9",
+        "type": "supervisor",
+        "z": "7ba8d1fbe3577553",
+        "name": "",
+        "topic": "e1fb971f-3e8a-478c-b846-9b6c76e39cde",
+        "endpoint": "https://atlas-ami-dev.cern.ch/AMI2/FrontEnd",
+        "x": 370,
+        "y": 120,
+        "wires": [
+            [
+                "247c7b8f7530815a"
+            ]
+        ]
+    },
+    {
+        "id": "bc9bcef5f75eb068",
+        "type": "mqtt in",
+        "z": "7ba8d1fbe3577553",
+        "name": "",
+        "topic": "ami/taskserver/task",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2d31d969126907db",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "9f7511e86e72a8f9"
+            ]
+        ]
+    },
+    {
+        "id": "a8b583288f8ed783",
+        "type": "mqtt in",
+        "z": "7ba8d1fbe3577553",
+        "name": "topic",
+        "topic": "e1fb971f-3e8a-478c-b846-9b6c76e39cde",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2d31d969126907db",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 90,
+        "y": 180,
+        "wires": [
+            [
+                "9f7511e86e72a8f9"
+            ]
+        ]
+    },
+    {
+        "id": "cca4959c8ad7dc37",
+        "type": "comment",
+        "z": "7ba8d1fbe3577553",
+        "name": "AMI Supervisor",
+        "info": "",
+        "x": 120,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "247c7b8f7530815a",
+        "type": "mqtt out",
+        "z": "7ba8d1fbe3577553",
+        "name": "ami/<server_name>/command/json",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2d31d969126907db",
+        "x": 660,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "86980f824104ee49",
+        "type": "inject",
+        "z": "db95e3904045023d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "1ecd232515b3e130"
+            ]
+        ]
+    },
+    {
+        "id": "fd477fc5062015e7",
+        "type": "debug",
+        "z": "db95e3904045023d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "553f0ddd3215204f",
+        "type": "inject",
+        "z": "db95e3904045023d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 340,
+        "wires": [
+            [
+                "506813e5dabdf4c9"
+            ]
+        ]
+    },
+    {
+        "id": "506813e5dabdf4c9",
+        "type": "task",
+        "z": "db95e3904045023d",
+        "name": "",
+        "description": "Test",
+        "script": "echo \"Hello World! \\${AMI_TASK_REPORT_FILE}\"",
+        "server": "TEST",
+        "priority": 0,
+        "time_step": 0,
+        "x": 290,
+        "y": 340,
+        "wires": [
+            [
+                "60ef03bb6c4a60c9"
+            ],
+            [
+                "571f94c1a3885fa9"
+            ],
+            [
+                "b2473a991bf17b3d",
+                "f0aba534fe953523"
+            ],
+            [
+                "c31a36fe55ea64a9"
+            ]
+        ]
+    },
+    {
+        "id": "60ef03bb6c4a60c9",
+        "type": "debug",
+        "z": "db95e3904045023d",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "571f94c1a3885fa9",
+        "type": "debug",
+        "z": "db95e3904045023d",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "b2473a991bf17b3d",
+        "type": "debug",
+        "z": "db95e3904045023d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "c31a36fe55ea64a9",
+        "type": "debug",
+        "z": "db95e3904045023d",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "f0aba534fe953523",
+        "type": "function",
+        "z": "db95e3904045023d",
+        "name": "",
+        "func": "msg.payload = msg.payload.report;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 400,
+        "wires": [
+            [
+                "c2ebf9166b3342a1"
+            ]
+        ]
+    },
+    {
+        "id": "c2ebf9166b3342a1",
+        "type": "json",
+        "z": "db95e3904045023d",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 670,
+        "y": 400,
+        "wires": [
+            [
+                "3c07907950eab094"
+            ]
+        ]
+    },
+    {
+        "id": "3c07907950eab094",
+        "type": "debug",
+        "z": "db95e3904045023d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "1ecd232515b3e130",
+        "type": "mqtt command",
+        "z": "db95e3904045023d",
+        "name": "",
+        "command": "GetServerStatus",
+        "server": "TEST",
+        "x": 320,
+        "y": 200,
+        "wires": [
+            [
+                "fd477fc5062015e7"
+            ]
+        ]
+    },
+    {
+        "id": "f6db4dbcc5bde672",
+        "type": "http command",
+        "z": "db95e3904045023d",
+        "name": "",
+        "endpoint": "",
+        "command": "GetSessionInfo",
+        "x": 320,
+        "y": 120,
+        "wires": [
+            [
+                "243b2b4fceab0af2"
+            ]
+        ]
+    },
+    {
+        "id": "c9d871e5b76211c1",
+        "type": "inject",
+        "z": "db95e3904045023d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 120,
+        "wires": [
+            [
+                "f6db4dbcc5bde672"
+            ]
+        ]
+    },
+    {
+        "id": "243b2b4fceab0af2",
+        "type": "debug",
+        "z": "db95e3904045023d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "2f2c7c5a4b1833b3",
+        "type": "comment",
+        "z": "db95e3904045023d",
+        "name": "Demo 1",
+        "info": "",
+        "x": 90,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "281ba6bf44d399c3",
+        "type": "task",
+        "z": "04d178d1f5eb0ee8",
+        "name": "task1",
+        "description": "",
+        "script": "echo \"{\\\\\"username\\\\\":\\\\\"foo\\\\\"}\" > \\${AMI_TASK_REPORT_FILE}",
+        "server": "TEST",
+        "priority": 0,
+        "time_step": "0",
+        "x": 270,
+        "y": 160,
+        "wires": [
+            [
+                "013e1558cc8b6db0"
+            ],
+            [
+                "fe48be16b473a3b4"
+            ],
+            [
+                "fc8178cc21327ef1",
+                "74bda8e23cebbac2"
+            ],
+            [
+                "2cd0935d24a7e226"
+            ]
+        ]
+    },
+    {
+        "id": "013e1558cc8b6db0",
+        "type": "debug",
+        "z": "04d178d1f5eb0ee8",
+        "name": "submission msg",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "14a828ce1b2aeb2a",
+        "type": "inject",
+        "z": "04d178d1f5eb0ee8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "281ba6bf44d399c3"
+            ]
+        ]
+    },
+    {
+        "id": "fc8178cc21327ef1",
+        "type": "debug",
+        "z": "04d178d1f5eb0ee8",
+        "name": "success msg",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "2cd0935d24a7e226",
+        "type": "debug",
+        "z": "04d178d1f5eb0ee8",
+        "name": "error msg",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "fe48be16b473a3b4",
+        "type": "debug",
+        "z": "04d178d1f5eb0ee8",
+        "name": "starting msg",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "74bda8e23cebbac2",
+        "type": "json",
+        "z": "04d178d1f5eb0ee8",
+        "name": "",
+        "property": "payload.report",
+        "action": "",
+        "pretty": false,
+        "x": 330,
+        "y": 340,
+        "wires": [
+            [
+                "1f91472d377c0275",
+                "0aac8d9839f1f16a"
+            ]
+        ]
+    },
+    {
+        "id": "1f91472d377c0275",
+        "type": "debug",
+        "z": "04d178d1f5eb0ee8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "0aac8d9839f1f16a",
+        "type": "task",
+        "z": "04d178d1f5eb0ee8",
+        "name": "task2",
+        "description": "",
+        "script": "echo \"Hello ${msg.payload.report.username}\" > \\${AMI_TASK_REPORT_FILE}",
+        "server": "TEST",
+        "priority": 0,
+        "time_step": 60,
+        "x": 510,
+        "y": 340,
+        "wires": [
+            [],
+            [],
+            [
+                "82cd536042459941"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "82cd536042459941",
+        "type": "debug",
+        "z": "04d178d1f5eb0ee8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "5dcd59326e841df8",
+        "type": "comment",
+        "z": "04d178d1f5eb0ee8",
+        "name": "Demo 2",
+        "info": "",
+        "x": 90,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "8122c68ffa82b576",
+        "type": "inject",
+        "z": "69bbb4abf95a3782",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 120,
+        "wires": [
+            [
+                "8e56748698413454"
+            ]
+        ]
+    },
+    {
+        "id": "8e56748698413454",
+        "type": "mqtt command",
+        "z": "69bbb4abf95a3782",
+        "name": "Show logs",
+        "command": "SetLogLevel -level=\"DEBUG\"",
+        "server": "TEST",
+        "x": 310,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8ce53e7b6aed4499",
+        "type": "inject",
+        "z": "69bbb4abf95a3782",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 180,
+        "wires": [
+            [
+                "50d2dd543dda64ae"
+            ]
+        ]
+    },
+    {
+        "id": "50d2dd543dda64ae",
+        "type": "mqtt command",
+        "z": "69bbb4abf95a3782",
+        "name": "Hide logs",
+        "command": "SetLogLevel -level=\"INFO\"",
+        "server": "TEST",
+        "x": 300,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e885f48d4e44c26d",
+        "type": "comment",
+        "z": "69bbb4abf95a3782",
+        "name": "Logs",
+        "info": "",
+        "x": 90,
+        "y": 40,
+        "wires": []
+    }
+]

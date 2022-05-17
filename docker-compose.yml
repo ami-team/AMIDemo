@@ -1,0 +1,85 @@
+version: "3.9"
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: ami-stack-mariadb
+    ports:
+      - 3307:3306
+    volumes:
+      - ./data-mariadb/:/var/lib/mysql/:rw
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 3308:80
+    environment:
+      PMA_ARBITRARY: 0
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+  mosquitto:
+    image: amiteam/mosquitto
+    container_name: ami-stack-mosquitto
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - ./data-mosquitto/:/mosquitto/config/
+  ap:
+    image: amiteam/pipeline:latest
+    container_name: ami-stack-pipeline
+    ports:
+      - 1880:1880
+    volumes:
+      - ./data-pipeline/:/data/
+  aes:
+    image: amiteam/exclusion-server:latest
+    container_name: ami-stack-exclusion-server
+    ports:
+      - 1357:1357
+  ats:
+    image: amiteam/task-server:latest
+    container_name: ami-stack-task-server
+    volumes:
+      - ./data-task-server/:/AMITaskServer/workspace/
+    environment:
+      SERVER_NAME: DEMO
+      MQTT_URL: ws://mosquitto:9001/ws/
+      MQTT_USERNAME: anonymous
+      MQTT_PASSWORD: anonymous
+      JDBC_URL: jdbc:mariadb://mariadb:3306/task?serverTimezone=UTC
+      JDBC_USERNAME: root
+      JDBC_PASSWORD: root
+      EXCLUSION_SERVER_URL: http://aes:1357/
+  as:
+    image: amiteam/server:latest
+    container_name: ami-stack-server
+    ports:
+      - 8080:8080
+    volumes:
+      - ./data-server/:/AMI/cmd/
+    environment:
+      BASE_URL: http://localhost/
+      ADMIN_USER: admin
+      ADMIN_PASS: demo
+      ADMIN_EMAIL: ami@lpsc.in2p3.fr
+      ENCRYPTION_KEY: BHbKwRM4lgHWJxFE
+      AUTHORIZED_IPS: ""
+      ROUTER_CATALOG: router
+      ROUTER_SCHEMA: "@NULL"
+      ROUTER_URL: jdbc:mariadb://mariadb:3306/router?serverTimezone=UTC
+      ROUTER_USER: root
+      ROUTER_PASS: root
+  awf:
+    image: amiteam/web-framework:latest
+    container_name: ami-stack-web-framework
+    ports:
+      - 80:80
+    volumes:
+      - ./data-web-framework/:/usr/share/nginx/html/
+    environment:
+      AMI_HOME_PAGE_TITLE: Demo
+      AMI_HOME_PAGE_ENDPOINT: http://localhost:8080/AMI/FrontEnd
