@@ -34,6 +34,14 @@ cd AMIDemo
 docker-compose up
 ```
 
+Web interfaces:
+  - Metadata interfaces: http://localhost:80/
+  - Pipeline interfaces: http://localhost:1880/
+  - phpMyAdmin interfaces: http://localhost:3308/
+
+Web service:
+  - http://localhost:8080/AMI/FrontEnd
+
 Developers
 ==========
 
