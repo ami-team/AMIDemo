@@ -25,6 +25,15 @@ AMI Full Stack Demo
 
 This is a "docker-compose"-based demo of the full AMI ecosystem. It was originally developed for the A Toroidal LHC ApparatuS (ATLAS) experiment, one of the two general-purpose detectors at the Large Hadron Collider (LHC).
 
+Usage
+=====
+
+```bash
+git clone https://github.com/ami-team/AMIDemo.git
+cd AMIDemo
+docker-compose up
+```
+
 Developers
 ==========
 
