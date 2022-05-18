@@ -21,7 +21,7 @@ services:
       PMA_USER: root
       PMA_PASSWORD: root
   mosquitto:
-    image: amiteam/mosquitto
+    image: amiteam/mosquitto:latest
     container_name: ami-stack-mosquitto
     ports:
       - 1883:1883
