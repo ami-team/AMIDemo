@@ -1,52 +1,57 @@
-version: "3.9"
+version: "3"
+
 services:
+
   mariadb:
     image: mariadb:latest
     container_name: ami-stack-mariadb
-    ports:
-      - 3307:3306
     volumes:
       - ./data-mariadb/:/var/lib/mysql/:rw
       - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
     environment:
       MARIADB_ROOT_PASSWORD: root
+    ports:
+      - 3307:3306
+
   phpmyadmin:
     image: phpmyadmin:latest
-    ports:
-      - 3308:80
     environment:
       PMA_ARBITRARY: 0
       PMA_HOST: mariadb
       PMA_PORT: 3306
       PMA_USER: root
       PMA_PASSWORD: root
+    ports:
+      - 3308:80
+
   mosquitto:
     image: amiteam/mosquitto:latest
     container_name: ami-stack-mosquitto
-    ports:
-      - 1883:1883
-      - 9001:9001
     volumes:
       - ./data-mosquitto/config/:/mosquitto/config/
       - ./data-mosquitto/data/:/mosquitto/data/
       - ./data-mosquitto/log/:/mosquitto/log/
+    ports:
+      - 1883:1883
+      - 9001:9001
+
   ap:
     image: amiteam/pipeline:latest
     container_name: ami-stack-pipeline
-    ports:
-      - 1880:1880
     volumes:
       - ./data-pipeline/:/data/
+    ports:
+      - 1880:1880
+
   aes:
     image: amiteam/exclusion-server:latest
     container_name: ami-stack-exclusion-server
     ports:
       - 1357:1357
+
   ats:
     image: amiteam/task-server:latest
     container_name: ami-stack-task-server
-    volumes:
-      - ./data-task-server/:/AMITaskServer/workspace/
     environment:
       SERVER_NAME: DEMO
       MQTT_URL: ws://mosquitto:9001/ws/
@@ -56,11 +61,12 @@ services:
       JDBC_USERNAME: root
       JDBC_PASSWORD: root
       EXCLUSION_SERVER_URL: http://aes:1357/
+    volumes:
+      - ./data-task-server/:/AMITaskServer/workspace/
+
   as:
     image: amiteam/server:latest
     container_name: ami-stack-server
-    ports:
-      - 8080:8080
     volumes:
       - ./data-server/:/AMI/cmd/
     environment:
@@ -75,13 +81,18 @@ services:
       ROUTER_URL: jdbc:mariadb://mariadb:3306/router?serverTimezone=UTC
       ROUTER_USER: root
       ROUTER_PASS: root
+    ports:
+      - 8080:8080
+
   awf:
     image: amiteam/web-framework:latest
     container_name: ami-stack-web-framework
-    ports:
-      - 80:80
     volumes:
       - ./data-web-framework/:/usr/share/nginx/html/
     environment:
       AMI_HOME_PAGE_TITLE: Demo
       AMI_HOME_PAGE_ENDPOINT: http://localhost:8080/AMI/FrontEnd
+    ports:
+      - 80:80
+    labels:
+      kompose.service.type: LoadBalancer
