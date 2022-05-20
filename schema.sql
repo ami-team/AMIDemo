@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mariadb:3306
--- Généré le : mar. 17 mai 2022 à 22:58
+-- Généré le : ven. 20 mai 2022 à 14:25
 -- Version du serveur : 10.7.3-MariaDB-1:10.7.3+maria~focal
 -- Version de PHP : 8.0.19
 
@@ -12337,6 +12337,29 @@ INSERT INTO `PlaylistTrack` (`PlaylistId`, `TrackId`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `Preference`
+--
+
+CREATE TABLE `Preference` (
+  `PreferenceId` int(11) NOT NULL,
+  `CustomerId` int(11) NOT NULL,
+  `GenreId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+
+--
+-- Déchargement des données de la table `Preference`
+--
+
+INSERT INTO `Preference` (`PreferenceId`, `CustomerId`, `GenreId`) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3),
+(4, 4, 4),
+(5, 5, 5);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `Track`
 --
 
@@ -15938,6 +15961,14 @@ ALTER TABLE `PlaylistTrack`
   ADD KEY `IFK_PlaylistTrackTrackId` (`TrackId`);
 
 --
+-- Index pour la table `Preference`
+--
+ALTER TABLE `Preference`
+  ADD PRIMARY KEY (`PreferenceId`),
+  ADD KEY `FK_PreferenceCustomerId` (`CustomerId`),
+  ADD KEY `FK_PreferenceGenreId` (`GenreId`);
+
+--
 -- Index pour la table `Track`
 --
 ALTER TABLE `Track`
@@ -16005,6 +16036,12 @@ ALTER TABLE `Playlist`
   MODIFY `PlaylistId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
+-- AUTO_INCREMENT pour la table `Preference`
+--
+ALTER TABLE `Preference`
+  MODIFY `PreferenceId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT pour la table `Track`
 --
 ALTER TABLE `Track`
@@ -16051,6 +16088,13 @@ ALTER TABLE `InvoiceLine`
 ALTER TABLE `PlaylistTrack`
   ADD CONSTRAINT `FK_PlaylistTrackPlaylistId` FOREIGN KEY (`PlaylistId`) REFERENCES `Playlist` (`PlaylistId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_PlaylistTrackTrackId` FOREIGN KEY (`TrackId`) REFERENCES `Track` (`TrackId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `Preference`
+--
+ALTER TABLE `Preference`
+  ADD CONSTRAINT `FK_PreferenceCustomerId` FOREIGN KEY (`CustomerId`) REFERENCES `Customer` (`CustomerId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_PreferenceGenreId` FOREIGN KEY (`GenreId`) REFERENCES `Genre` (`GenreId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `Track`
@@ -16117,7 +16161,7 @@ CREATE TABLE `router_catalog` (
 INSERT INTO `router_catalog` (`id`, `externalCatalog`, `internalCatalog`, `internalSchema`, `jdbcUrl`, `user`, `pass`, `json`, `description`, `archived`, `created`, `createdBy`, `modified`, `modifiedBy`) VALUES
 (1, 'self', 'router', NULL, 'jdbc:mariadb://mariadb:3306/router?serverTimezone=UTC', 'ML1mV/bxsm0/bVLHJBBmKA==', 'ML1mV/bxsm0/bVLHJBBmKA==', '{\"router_authority\":{\"x\":250,\"y\":370,\"color\":\"#1494CC\"},\"router_catalog\":{\"x\":0,\"y\":0,\"color\":\"#2BBB88\"},\"router_command\":{\"x\":0,\"y\":370,\"color\":\"#0066CC\"},\"router_command_role\":{\"x\":0,\"y\":270,\"color\":\"#0066CC\"},\"router_config\":{\"x\":750,\"y\":240,\"color\":\"#FF0000\"},\"router_converter\":{\"x\":750,\"y\":400,\"color\":\"#FF0000\"},\"router_dashboard\":{\"x\":0,\"y\":640,\"color\":\"#CCCC33\"},\"router_entity\":{\"x\":250,\"y\":0,\"color\":\"#2BBB88\"},\"router_field\":{\"x\":500,\"y\":0,\"color\":\"#2BBB88\"},\"router_foreign_key\":{\"x\":750,\"y\":0,\"color\":\"#2BBB88\"},\"router_ipv4_blocks\":{\"x\":0,\"y\":890,\"color\":\"#CCAC81\"},\"router_ipv6_blocks\":{\"x\":500,\"y\":890,\"color\":\"#CCAA88\"},\"router_locations\":{\"x\":250,\"y\":905,\"color\":\"#CCAA88\"},\"router_markdown\":{\"x\":750,\"y\":640,\"color\":\"#CCCC33\"},\"router_monitoring\":{\"x\":750,\"y\":500,\"color\":\"#FF0000\"},\"router_role\":{\"x\":250,\"y\":270,\"color\":\"#0066CC\"},\"router_search_interface\":{\"x\":250,\"y\":640,\"color\":\"#CCCC33\"},\"router_short_url\":{\"x\":500,\"y\":640,\"color\":\"#CCCC33\"},\"router_user\":{\"x\":500,\"y\":370,\"color\":\"#0066CC\"},\"router_user_role\":{\"x\":500,\"y\":270,\"color\":\"#0066CC\"}}', 'AMI configuration catalog', 0, '2022-05-17 12:32:28', 'admin', '2022-05-17 12:32:28', 'admin'),
 (2, 'task', 'task', NULL, 'jdbc:mariadb://mariadb:3306/task?serverTimezone=UTC', 'ML1mV/bxsm0/bVLHJBBmKA==', 'ML1mV/bxsm0/bVLHJBBmKA==', '{\"router_task\":{\"x\":10,\"y\":10,\"color\":\"#0066CC\"}}', 'AMI tasks catalog', 0, '2022-05-17 12:33:44', 'admin', '2022-05-17 21:50:25', 'admin'),
-(3, 'demo', 'demo', NULL, 'jdbc:mariadb://mariadb:3306/demo?serverTimezone=UTC', 'ML1mV/bxsm0/bVLHJBBmKA==', 'ML1mV/bxsm0/bVLHJBBmKA==', '{\"album\":{\"x\":520,\"y\":240,\"color\":\"#ff9300\"},\"artist\":{\"x\":520,\"y\":150,\"color\":\"#ff9300\"},\"customer\":{\"x\":770,\"y\":320,\"color\":\"#5e5e5e\"},\"employee\":{\"x\":770,\"y\":40,\"color\":\"#5e5e5e\"},\"genre\":{\"x\":20,\"y\":190,\"color\":\"#0066CC\"},\"invoice\":{\"x\":520,\"y\":350,\"color\":\"#941651\"},\"invoiceline\":{\"x\":270,\"y\":380,\"color\":\"#941651\"},\"mediatype\":{\"x\":20,\"y\":290,\"color\":\"#9437ff\"},\"playlist\":{\"x\":270,\"y\":10,\"color\":\"#008f51\"},\"playlisttrack\":{\"x\":270,\"y\":100,\"color\":\"#0066CC\"},\"track\":{\"x\":270,\"y\":190,\"color\":\"#0066CC\"}}', 'AMI demo catalog', 0, '2022-05-17 12:34:05', 'admin', '2022-05-17 21:53:42', 'admin');
+(3, 'demo', 'demo', NULL, 'jdbc:mariadb://mariadb:3306/demo?serverTimezone=UTC', 'ML1mV/bxsm0/bVLHJBBmKA==', 'ML1mV/bxsm0/bVLHJBBmKA==', '{\"Album\":{\"x\":520,\"y\":240,\"color\":\"#ff9300\"},\"Artist\":{\"x\":520,\"y\":150,\"color\":\"#ff9300\"},\"Customer\":{\"x\":770,\"y\":320,\"color\":\"#5e5e5e\"},\"Employee\":{\"x\":770,\"y\":40,\"color\":\"#5e5e5e\"},\"Genre\":{\"x\":20,\"y\":190,\"color\":\"#0066CC\"},\"Invoice\":{\"x\":520,\"y\":350,\"color\":\"#941651\"},\"InvoiceLine\":{\"x\":270,\"y\":380,\"color\":\"#941651\"},\"MediaType\":{\"x\":20,\"y\":290,\"color\":\"#9437ff\"},\"Playlist\":{\"x\":270,\"y\":10,\"color\":\"#008f51\"},\"PlaylistTrack\":{\"x\":270,\"y\":100,\"color\":\"#0066CC\"},\"Preference\":{\"x\":20,\"y\":20,\"color\":\"#0066CC\"},\"Track\":{\"x\":270,\"y\":190,\"color\":\"#0066CC\"}}', 'AMI demo catalog', 0, '2022-05-17 12:34:05', 'admin', '2022-05-20 13:57:10', 'admin');
 
 -- --------------------------------------------------------
 
@@ -16587,10 +16631,10 @@ CREATE TABLE `router_search_interface` (
 --
 
 INSERT INTO `router_search_interface` (`id`, `group`, `name`, `rank`, `json`, `archived`, `created`, `createdBy`, `modified`, `modifiedBy`) VALUES
-(1, 'Store', 'Employee', 3, '{\"defaultCatalog\":\"demo\",\"defaultEntity\":\"Employee\",\"defaultPrimaryField\":\"EmployeeId\",\"more\":{},\"criteria\":[{\"name\":\"Employee LastName\",\"catalog\":\"demo\",\"entity\":\"Employee\",\"field\":\"LastName\",\"type\":0,\"more\":{\"auto_open\":true,\"simple_search\":false}},{\"name\":\"Employee FirstName\",\"catalog\":\"demo\",\"entity\":\"Employee\",\"field\":\"FirstName\",\"type\":1,\"more\":{}},{\"name\":\"Customer FirstName\",\"catalog\":\"demo\",\"entity\":\"Customer\",\"field\":\"FirstName\",\"type\":1,\"more\":{}},{\"name\":\"Customer LastName\",\"catalog\":\"demo\",\"entity\":\"Customer\",\"field\":\"LastName\",\"type\":1,\"more\":{}},{\"name\":\"Total\",\"catalog\":\"demo\",\"entity\":\"Invoice\",\"field\":\"Total\",\"type\":2,\"more\":{}}]}', 0, '2022-05-03 09:06:14', 'admin', '2022-05-03 09:25:35', 'admin'),
-(2, 'Store', 'Customer', 2, '{\"defaultCatalog\":\"demo\",\"defaultEntity\":\"Customer\",\"defaultPrimaryField\":\"CustomerId\",\"more\":{},\"criteria\":[{\"name\":\"Customer Last Name\",\"catalog\":\"demo\",\"entity\":\"Customer\",\"field\":\"LastName\",\"type\":1,\"more\":{\"auto_open\":true,\"simple_search\":false}},{\"name\":\"Customer First Name\",\"catalog\":\"demo\",\"entity\":\"Customer\",\"field\":\"FirstName\",\"type\":1,\"more\":{}},{\"name\":\"Single\",\"catalog\":\"demo\",\"entity\":\"Track\",\"field\":\"Name\",\"type\":1,\"more\":{}},{\"name\":\"Total\",\"catalog\":\"demo\",\"entity\":\"Invoice\",\"field\":\"Total\",\"type\":2,\"more\":{}}]}', 0, '2022-05-03 09:06:18', 'admin', '2022-05-03 09:25:35', 'admin'),
-(3, 'Music', 'Artist', 1, '{\"defaultCatalog\":\"demo\",\"defaultEntity\":\"Artist\",\"defaultPrimaryField\":\"ArtistId\",\"more\":{},\"criteria\":[{\"name\":\"Artist\",\"catalog\":\"demo\",\"entity\":\"Artist\",\"field\":\"Name\",\"type\":1,\"more\":{\"auto_open\":true,\"simple_search\":false}},{\"name\":\"Single\",\"catalog\":\"demo\",\"entity\":\"Track\",\"field\":\"Name\",\"type\":1,\"more\":{}},{\"name\":\"Genre\",\"catalog\":\"demo\",\"entity\":\"Genre\",\"field\":\"Name\",\"type\":0,\"more\":{}},{\"name\":\"Customer LastName\",\"catalog\":\"demo\",\"entity\":\"Customer\",\"field\":\"LastName\",\"type\":0,\"more\":{}}]}', 0, '2022-05-03 09:06:28', 'admin', '2022-05-03 09:25:32', 'admin'),
-(4, 'Music', 'Track', 0, '{\"defaultCatalog\":\"demo\",\"defaultEntity\":\"Track\",\"defaultPrimaryField\":\"TrackId\",\"more\":{},\"criteria\":[{\"name\":\"Title\",\"catalog\":\"demo\",\"entity\":\"Track\",\"field\":\"Name\",\"type\":1,\"more\":{\"auto_open\":true,\"simple_search\":false}},{\"name\":\"Milliseconds\",\"catalog\":\"demo\",\"entity\":\"Track\",\"field\":\"Milliseconds\",\"type\":2,\"more\":{}},{\"name\":\"Bytes\",\"catalog\":\"demo\",\"entity\":\"Track\",\"field\":\"Bytes\",\"type\":2,\"more\":{}},{\"name\":\"Genre\",\"catalog\":\"demo\",\"entity\":\"Genre\",\"field\":\"Name\",\"type\":0,\"more\":{}},{\"name\":\"Artist\",\"catalog\":\"demo\",\"entity\":\"Artist\",\"field\":\"Name\",\"type\":1,\"more\":{}},{\"name\":\"PlayList\",\"catalog\":\"demo\",\"entity\":\"Playlist\",\"field\":\"Name\",\"type\":0,\"more\":{}},{\"name\":\"Media\",\"catalog\":\"demo\",\"entity\":\"MediaType\",\"field\":\"Name\",\"type\":0,\"more\":{}}]}', 0, '2022-05-03 09:08:07', 'admin', '2022-05-03 09:25:33', 'admin');
+(1, 'Store', 'Employee', 3, '{\"defaultCatalog\":\"demo\",\"defaultEntity\":\"Employee\",\"defaultPrimaryField\":\"EmployeeId\",\"more\":{},\"criteria\":[{\"name\":\"Employee LastName\",\"catalog\":\"demo\",\"entity\":\"Employee\",\"field\":\"LastName\",\"type\":0,\"more\":{\"auto_open\":true,\"simple_search\":false}},{\"name\":\"Employee FirstName\",\"catalog\":\"demo\",\"entity\":\"Employee\",\"field\":\"FirstName\",\"type\":1,\"more\":{}},{\"name\":\"Customer FirstName\",\"catalog\":\"demo\",\"entity\":\"Customer\",\"field\":\"FirstName\",\"type\":1,\"more\":{}},{\"name\":\"Customer LastName\",\"catalog\":\"demo\",\"entity\":\"Customer\",\"field\":\"LastName\",\"type\":1,\"more\":{}},{\"name\":\"Invoice Total\",\"catalog\":\"demo\",\"entity\":\"Invoice\",\"field\":\"Total\",\"type\":2,\"more\":{\"auto_open\":false,\"simple_search\":false,\"constraints\":[\"!`demo`.`Preference`.`CustomerId`\"]}}]}', 0, '2022-05-03 09:06:14', 'admin', '2022-05-20 14:18:25', 'admin'),
+(2, 'Store', 'Customer', 2, '{\"defaultCatalog\":\"demo\",\"defaultEntity\":\"Customer\",\"defaultPrimaryField\":\"CustomerId\",\"more\":{},\"criteria\":[{\"name\":\"Customer Last Name\",\"catalog\":\"demo\",\"entity\":\"Customer\",\"field\":\"LastName\",\"type\":1,\"more\":{\"auto_open\":true,\"simple_search\":false}},{\"name\":\"Customer First Name\",\"catalog\":\"demo\",\"entity\":\"Customer\",\"field\":\"FirstName\",\"type\":1,\"more\":{}},{\"name\":\"Single\",\"catalog\":\"demo\",\"entity\":\"Track\",\"field\":\"Name\",\"type\":1,\"more\":{\"auto_open\":false,\"simple_search\":false,\"constraints\":[\"`demo`.`Invoice`.`CustomerId`\"]}},{\"name\":\"Invoice Total\",\"catalog\":\"demo\",\"entity\":\"Invoice\",\"field\":\"Total\",\"type\":2,\"more\":{\"auto_open\":false,\"simple_search\":false,\"constraints\":[\"!`demo`.`Preference`.`CustomerId`\"]}},{\"name\":\"Favorite Genres\",\"catalog\":\"demo\",\"entity\":\"Genre\",\"field\":\"Name\",\"type\":0,\"more\":{\"auto_open\":false,\"simple_search\":false,\"constraints\":[\"`demo`.`Preference`.`CustomerId`\"]}},{\"name\":\"Purchased Genres\",\"catalog\":\"demo\",\"entity\":\"Genre\",\"field\":\"Name\",\"type\":0,\"more\":{\"auto_open\":false,\"simple_search\":false,\"constraints\":[\"`demo`.`Invoice`.`CustomerId`\"]}}]}', 0, '2022-05-03 09:06:18', 'admin', '2022-05-20 14:17:49', 'admin'),
+(3, 'Music', 'Artist', 1, '{\"defaultCatalog\":\"demo\",\"defaultEntity\":\"Artist\",\"defaultPrimaryField\":\"ArtistId\",\"more\":{},\"criteria\":[{\"name\":\"Artist\",\"catalog\":\"demo\",\"entity\":\"Artist\",\"field\":\"Name\",\"type\":1,\"more\":{\"auto_open\":true,\"simple_search\":false}},{\"name\":\"Single\",\"catalog\":\"demo\",\"entity\":\"Track\",\"field\":\"Name\",\"type\":1,\"more\":{}},{\"name\":\"Genre\",\"catalog\":\"demo\",\"entity\":\"Genre\",\"field\":\"Name\",\"type\":0,\"more\":{\"auto_open\":false,\"simple_search\":false,\"constraints\":[\"!`demo`.`InvoiceLine`.`InvoiceId`\"]}},{\"name\":\"Customer LastName\",\"catalog\":\"demo\",\"entity\":\"Customer\",\"field\":\"LastName\",\"type\":0,\"more\":{\"auto_open\":false,\"simple_search\":false,\"constraints\":[\"`demo`.`InvoiceLine`.`TrackId`\"]}}]}', 0, '2022-05-03 09:06:28', 'admin', '2022-05-20 13:31:18', 'admin'),
+(4, 'Music', 'Track', 0, '{\"defaultCatalog\":\"demo\",\"defaultEntity\":\"Track\",\"defaultPrimaryField\":\"TrackId\",\"more\":{},\"criteria\":[{\"name\":\"Title\",\"catalog\":\"demo\",\"entity\":\"Track\",\"field\":\"Name\",\"type\":1,\"more\":{\"auto_open\":true,\"simple_search\":false}},{\"name\":\"Milliseconds\",\"catalog\":\"demo\",\"entity\":\"Track\",\"field\":\"Milliseconds\",\"type\":2,\"more\":{}},{\"name\":\"Bytes\",\"catalog\":\"demo\",\"entity\":\"Track\",\"field\":\"Bytes\",\"type\":2,\"more\":{}},{\"name\":\"Genre\",\"catalog\":\"demo\",\"entity\":\"Genre\",\"field\":\"Name\",\"type\":0,\"more\":{\"auto_open\":false,\"simple_search\":false,\"constraints\":[\"!`demo`.`InvoiceLine`.`InvoiceId`\"]}},{\"name\":\"Artist\",\"catalog\":\"demo\",\"entity\":\"Artist\",\"field\":\"Name\",\"type\":1,\"more\":{}},{\"name\":\"PlayList\",\"catalog\":\"demo\",\"entity\":\"Playlist\",\"field\":\"Name\",\"type\":0,\"more\":{}},{\"name\":\"Media\",\"catalog\":\"demo\",\"entity\":\"MediaType\",\"field\":\"Name\",\"type\":0,\"more\":{}}]}', 0, '2022-05-03 09:08:07', 'admin', '2022-05-20 13:05:21', 'admin');
 
 -- --------------------------------------------------------
 
@@ -16926,7 +16970,7 @@ ALTER TABLE `router_search_interface`
 -- AUTO_INCREMENT pour la table `router_short_url`
 --
 ALTER TABLE `router_short_url`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `router_user`
@@ -17005,7 +17049,7 @@ CREATE TABLE `router_task` (
 --
 
 INSERT INTO `router_task` (`id`, `name`, `description`, `command`, `commaSeparatedLocks`, `oneShot`, `priority`, `timeStep`, `serverName`, `running`, `success`, `report`, `stdout`, `stderr`, `lastStartDate`, `lastStopDate`) VALUES
-(24, 'recurent-task-1', 'example of recurent task', 'echo \"Hello World! I am recurent-task-1 NULL\"', '', 0, 0, 10, 'DEMO', 0, 1, '{}', 'Hello World! I am recurent-task-1 NULL\n', '', 1652828331, 1652828332);
+(24, 'recurent-task-1', 'example of recurent task', 'echo \"Hello World! I am recurent-task-1 NULL\"', '', 0, 0, 10, 'DEMO', 0, 1, '{}', 'Hello World! I am recurent-task-1 NULL\n', '', 1653056739, 1653056740);
 
 --
 -- Index pour les tables déchargées
