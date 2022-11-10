@@ -16199,7 +16199,6 @@ INSERT INTO `router_command` (`id`, `command`, `class`, `visible`, `secured`, `r
 (14, 'LocalizeIP', 'net.hep.ami.command.user.LocalizeIP', 1, 0, NULL),
 (15, 'AddHash', 'net.hep.ami.command.hash.AddHash', 1, 0, NULL),
 (16, 'GetNodeStatus', 'net.hep.ami.command.server.GetNodeStatus', 0, 0, NULL),
-(17, 'RootH1I', 'net.hep.ami.command.root.RootH1I', 1, 0, NULL),
 (18, 'GetElementInfo', 'net.hep.ami.command.catalog.GetElementInfo', 1, 0, NULL),
 (19, 'SendEmail', 'net.hep.ami.command.misc.SendEmail', 0, 0, NULL),
 (20, 'ListCommands', 'net.hep.ami.command.admin.ListCommands', 1, 0, NULL),
@@ -16212,7 +16211,6 @@ INSERT INTO `router_command` (`id`, `command`, `class`, `visible`, `secured`, `r
 (27, 'UpdateQuery', 'net.hep.ami.command.catalog.UpdateQuery', 1, 0, NULL),
 (28, 'RemoveUserRole', 'net.hep.ami.command.admin.RemoveUserRole', 0, 0, NULL),
 (29, 'AddRole', 'net.hep.ami.command.admin.AddRole', 0, 0, NULL),
-(30, 'RootH1F', 'net.hep.ami.command.root.RootH1F', 1, 0, NULL),
 (31, 'FlushServerCaches', 'net.hep.ami.command.server.FlushServerCaches', 0, 0, NULL),
 (32, 'AddCommand', 'net.hep.ami.command.admin.AddCommand', 0, 0, NULL),
 (33, 'AddWidget', 'net.hep.ami.command.dashboard.AddWidget', 1, 0, NULL),
@@ -16233,7 +16231,6 @@ INSERT INTO `router_command` (`id`, `command`, `class`, `visible`, `secured`, `r
 (48, 'Echo', 'net.hep.ami.command.misc.Echo', 1, 0, NULL),
 (49, 'AddElement', 'net.hep.ami.command.catalog.AddElement', 1, 0, NULL),
 (50, 'RevokeCertificateAndSendEmail', 'net.hep.ami.command.certificate.RevokeCertificateAndSendEmail', 0, 0, NULL),
-(51, 'SendFile', 'net.hep.ami.command.misc.SendFile', 0, 0, NULL),
 (52, 'GetUserStats', 'net.hep.ami.command.user.GetUserStats', 0, 0, NULL),
 (53, 'SetUserInfo', 'net.hep.ami.command.user.SetUserInfo', 1, 0, NULL),
 (54, 'GenerateAuthority', 'net.hep.ami.command.certificate.GenerateAuthority', 0, 1, NULL),
@@ -16293,7 +16290,6 @@ INSERT INTO `router_command_role` (`id`, `commandFK`, `roleFK`) VALUES
 (14, 14, 6),
 (15, 15, 6),
 (16, 16, 7),
-(17, 17, 6),
 (18, 18, 6),
 (19, 19, 6),
 (20, 20, 6),
@@ -16306,7 +16302,6 @@ INSERT INTO `router_command_role` (`id`, `commandFK`, `roleFK`) VALUES
 (27, 27, 5),
 (28, 28, 1),
 (29, 29, 1),
-(30, 30, 6),
 (31, 31, 1),
 (32, 32, 1),
 (33, 33, 6),
@@ -16327,7 +16322,6 @@ INSERT INTO `router_command_role` (`id`, `commandFK`, `roleFK`) VALUES
 (48, 48, 7),
 (49, 49, 5),
 (50, 50, 6),
-(51, 51, 6),
 (52, 52, 6),
 (53, 53, 7),
 (54, 54, 4),
@@ -17031,6 +17025,7 @@ CREATE TABLE `router_task` (
   `description` varchar(512) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `command` varchar(1024) COLLATE utf8mb3_unicode_ci NOT NULL,
   `commaSeparatedLocks` varchar(512) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `locked` INT(1) NOT NULL DEFAULT 0,
   `oneShot` int(1) NOT NULL DEFAULT 0,
   `priority` int(3) NOT NULL DEFAULT 0,
   `timeStep` int(11) NOT NULL DEFAULT 60,
@@ -17048,8 +17043,8 @@ CREATE TABLE `router_task` (
 -- Déchargement des données de la table `router_task`
 --
 
-INSERT INTO `router_task` (`id`, `name`, `description`, `command`, `commaSeparatedLocks`, `oneShot`, `priority`, `timeStep`, `serverName`, `running`, `success`, `report`, `stdout`, `stderr`, `lastStartDate`, `lastStopDate`) VALUES
-(24, 'recurent-task-1', 'example of recurent task', 'echo \"Hello World! I am recurent-task-1 NULL\"', '', 0, 0, 10, 'DEMO', 0, 1, '{}', 'Hello World! I am recurent-task-1 NULL\n', '', 1653056739, 1653056740);
+INSERT INTO `router_task` (`id`, `name`, `description`, `command`, `commaSeparatedLocks`, `locked`, `oneShot`, `priority`, `timeStep`, `serverName`, `running`, `success`, `report`, `stdout`, `stderr`, `lastStartDate`, `lastStopDate`) VALUES
+(24, 'recurent-task-1', 'example of recurent task', 'echo \"Hello World! I am recurent-task-1 NULL\"', '', 0, 0, 0, 10, 'DEMO', 0, 1, '{}', 'Hello World! I am recurent-task-1 NULL\n', '', 1653056739, 1653056740);
 
 --
 -- Index pour les tables déchargées

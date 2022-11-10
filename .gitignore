@@ -1,8 +1,12 @@
+.idea
 .DS_Store
 
+*.iml
 *.backup
 
+data-server
 data-mariadb
+data-mosquitto
 data-task-server
 data-web-framework
-
+data-exclusion-server

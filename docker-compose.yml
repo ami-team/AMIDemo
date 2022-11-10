@@ -11,10 +11,12 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: root
     ports:
-      - 3307:3306
+      - "660:3306"
 
   phpmyadmin:
     image: phpmyadmin:latest
+    depends_on:
+      - mariadb
     environment:
       PMA_ARBITRARY: 0
       PMA_HOST: mariadb
@@ -22,7 +24,7 @@ services:
       PMA_USER: root
       PMA_PASSWORD: root
     ports:
-      - 3308:80
+      - "661:80"
 
   mosquitto:
     image: amiteam/mosquitto:latest
@@ -32,26 +34,44 @@ services:
       - ./data-mosquitto/data/:/mosquitto/data/
       - ./data-mosquitto/log/:/mosquitto/log/
     ports:
-      - 1883:1883
-      - 9001:9001
+      - "662:1883"
+      - "663:9001"
 
   ap:
     image: amiteam/pipeline:latest
     container_name: ami-stack-pipeline
+    depends_on:
+      - mosquitto
     volumes:
       - ./data-pipeline/:/data/
     ports:
-      - 1880:1880
+      - "664:1880"
 
   aes:
     image: amiteam/exclusion-server:latest
     container_name: ami-stack-exclusion-server
+    depends_on:
+      - mosquitto
+    volumes:
+      - ./data-exclusion-server/logs/:/AMITaskServer/logs/
+    environment:
+      SERVER_NAME: EXCLUSION
+      MQTT_URL: ws://mosquitto:9001/ws/
+      MQTT_USERNAME: anonymous
+      MQTT_PASSWORD: anonymous
     ports:
-      - 1357:1357
+      - "665:1357"
 
   ats:
     image: amiteam/task-server:latest
     container_name: ami-stack-task-server
+    depends_on:
+      - aes
+      - mariadb
+      - mosquitto
+    volumes:
+      - ./data-task-server/logs/:/AMITaskServer/logs/
+      - ./data-task-server/tasks/:/AMITaskServer/tasks/
     environment:
       SERVER_NAME: DEMO
       MQTT_URL: ws://mosquitto:9001/ws/
@@ -61,16 +81,17 @@ services:
       JDBC_USERNAME: root
       JDBC_PASSWORD: root
       EXCLUSION_SERVER_URL: http://aes:1357/
-    volumes:
-      - ./data-task-server/:/AMITaskServer/workspace/
 
   as:
     image: amiteam/server:latest
     container_name: ami-stack-server
+    depends_on:
+      - mariadb
+      - mosquitto
     volumes:
       - ./data-server/:/AMI/cmd/
     environment:
-      BASE_URL: http://localhost/
+      BASE_URL: http://localhost:667/
       ADMIN_USER: admin
       ADMIN_PASS: demo
       ADMIN_EMAIL: ami@lpsc.in2p3.fr
@@ -82,7 +103,7 @@ services:
       ROUTER_USER: root
       ROUTER_PASS: root
     ports:
-      - 8080:8080
+      - "666:8080"
 
   awf:
     image: amiteam/web-framework:latest
@@ -91,8 +112,8 @@ services:
       - ./data-web-framework/:/usr/share/nginx/html/
     environment:
       AMI_HOME_PAGE_TITLE: Demo
-      AMI_HOME_PAGE_ENDPOINT: http://localhost:8080/AMI/FrontEnd
+      AMI_HOME_PAGE_ENDPOINT: http://localhost:666/AMI/FrontEnd
     ports:
-      - 80:80
+      - "667:80"
     labels:
       kompose.service.type: LoadBalancer

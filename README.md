@@ -35,12 +35,12 @@ docker-compose up
 ```
 
 Web interfaces:
-  - Metadata interfaces: http://localhost:80/
-  - Pipeline interfaces: http://localhost:1880/
-  - phpMyAdmin interfaces: http://localhost:3308/
+  - Metadata interfaces: http://localhost:667/
+  - Pipeline interfaces: http://localhost:664/
+  - phpMyAdmin interfaces: http://localhost:661/
 
 Web service:
-  - http://localhost:8080/AMI/FrontEnd
+  - http://localhost:666/AMI/FrontEnd
 
 Developers
 ==========
