@@ -49,7 +49,7 @@ services:
 
   aes:
     image: amiteam/exclusion-server:latest
-    container_name: ami-stack-exclusion-server
+    container_name: ami-stask-exclusion-server
     depends_on:
       - mosquitto
     volumes:
