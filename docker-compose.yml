@@ -12,6 +12,7 @@ services:
       MARIADB_ROOT_PASSWORD: root
     ports:
       - "660:3306"
+    restart: unless-stopped
 
   phpmyadmin:
     image: phpmyadmin:latest
@@ -25,6 +26,7 @@ services:
       PMA_PASSWORD: root
     ports:
       - "661:80"
+    restart: unless-stopped
 
   mosquitto:
     image: amiteam/mosquitto:latest
@@ -36,6 +38,7 @@ services:
     ports:
       - "662:1883"
       - "663:9001"
+    restart: unless-stopped
 
   ap:
     image: amiteam/pipeline:latest
@@ -46,6 +49,7 @@ services:
       - ./data-pipeline/:/data/
     ports:
       - "664:1880"
+    restart: unless-stopped
 
   aes:
     image: amiteam/exclusion-server:latest
@@ -61,6 +65,7 @@ services:
       MQTT_PASSWORD: anonymous
     ports:
       - "665:1357"
+    restart: unless-stopped
 
   ats:
     image: amiteam/task-server:latest
@@ -81,6 +86,7 @@ services:
       JDBC_USERNAME: root
       JDBC_PASSWORD: root
       EXCLUSION_SERVER_URL: http://aes:1357/
+    restart: unless-stopped
 
   as:
     image: amiteam/server:latest
@@ -104,6 +110,7 @@ services:
       ROUTER_PASS: root
     ports:
       - "666:8080"
+    restart: unless-stopped
 
   awf:
     image: amiteam/web-framework:latest
@@ -117,3 +124,4 @@ services:
       - "667:80"
     labels:
       kompose.service.type: LoadBalancer
+    restart: unless-stopped
