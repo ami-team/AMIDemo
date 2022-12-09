@@ -28,6 +28,8 @@ This is a "docker-compose"-based demo of the full AMI ecosystem. It was original
 Usage
 =====
 
+Make sure that `git` and `Docker Compose V2` are installed.
+
 ```bash
 git clone https://github.com/ami-team/AMIDemo.git
 cd AMIDemo
