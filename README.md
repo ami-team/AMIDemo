@@ -31,13 +31,13 @@ Usage
 Make sure that `git` and `Docker Compose V2` are installed.
 
 ```bash
-docker-compose --version
+docker compose version
 ```
 
 ```bash
 git clone https://github.com/ami-team/AMIDemo.git
 cd AMIDemo
-docker-compose up
+docker compose up
 ```
 
 Web interfaces:
