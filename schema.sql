@@ -17007,6 +17007,7 @@ ALTER TABLE `router_ipv6_blocks`
 ALTER TABLE `router_user_role`
   ADD CONSTRAINT `fk1_router_user_role` FOREIGN KEY (`userFK`) REFERENCES `router_user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk2_router_user_role` FOREIGN KEY (`roleFK`) REFERENCES `router_role` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
 --
 -- Base de données : `task`
 --
@@ -17014,6 +17015,38 @@ CREATE DATABASE IF NOT EXISTS `task` DEFAULT CHARACTER SET utf8mb3 COLLATE utf8m
 USE `task`;
 
 -- --------------------------------------------------------
+
+--
+-- Structure de la table `router_task_server`
+--
+
+CREATE TABLE `router_task_server` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `description` varchar(512) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+
+--
+-- Déchargement des données de la table `router_task_server`
+--
+INSERT INTO `router_task_server` (`id`, `name`, `description`) VALUES
+(1, 'DEMO', 'DEMO');
+
+--
+-- Index pour la table `router_task_server`
+--
+ALTER TABLE `router_task_server`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `router_task_server`
+--
+ALTER TABLE `router_task_server`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Structure de la table `router_task`

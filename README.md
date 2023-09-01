@@ -48,6 +48,15 @@ Web interfaces:
 Web service:
   - http://localhost:666/AMI/FrontEnd
 
+JWT issuer for demo:
+  - `AMI-Demo`
+
+JWT secret for demo:
+  - `jNAvEVLbgnjYqT8E`
+
+JWT token for demo:
+  - `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBTUktRGVtbyIsImlzcyI6IkFNSS1EZW1vIn0.WZ7Xs4WhO9QRL4D_vUSozyOesBbDNcnYEnfBqnPobzJKWwousQc_bhyVsgITFJ0ypxHzb4KnVg73X68qYI5ZOg`
+
 Developers
 ==========
 
