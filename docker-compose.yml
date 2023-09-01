@@ -35,6 +35,9 @@ services:
       - ./data-mosquitto/config/:/mosquitto/config/
       - ./data-mosquitto/data/:/mosquitto/data/
       - ./data-mosquitto/log/:/mosquitto/log/
+    environment:
+      JWT_SECRET: jNAvEVLbgnjYqT8E
+      JWT_ISSUER: AMI-Demo
     ports:
       - "662:1883"
       - "663:9001"
@@ -61,8 +64,8 @@ services:
     environment:
       SERVER_NAME: EXCLUSION
       MQTT_URL: ws://mosquitto:9001/ws/
-      MQTT_USERNAME: anonymous
-      MQTT_PASSWORD: anonymous
+      MQTT_USERNAME: AMI-Demo
+      MQTT_PASSWORD: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBTUktRGVtbyIsImlzcyI6IkFNSS1EZW1vIn0.WZ7Xs4WhO9QRL4D_vUSozyOesBbDNcnYEnfBqnPobzJKWwousQc_bhyVsgITFJ0ypxHzb4KnVg73X68qYI5ZOg
     ports:
       - "665:1357"
     restart: unless-stopped
@@ -80,8 +83,8 @@ services:
     environment:
       SERVER_NAME: DEMO
       MQTT_URL: ws://mosquitto:9001/ws/
-      MQTT_USERNAME: anonymous
-      MQTT_PASSWORD: anonymous
+      MQTT_USERNAME: AMI-Demo
+      MQTT_PASSWORD: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBTUktRGVtbyIsImlzcyI6IkFNSS1EZW1vIn0.WZ7Xs4WhO9QRL4D_vUSozyOesBbDNcnYEnfBqnPobzJKWwousQc_bhyVsgITFJ0ypxHzb4KnVg73X68qYI5ZOg
       JDBC_URL: jdbc:mariadb://mariadb:3306/task?serverTimezone=UTC
       JDBC_USERNAME: root
       JDBC_PASSWORD: root
