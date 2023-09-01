@@ -1,23 +1,23 @@
 [![][License img]][License]
 
 <a href="http://lpsc.in2p3.fr/" target="_blank">
-	<img src="http://ami.in2p3.fr/docs/images/logo_lpsc.png" alt="LPSC" height="72" />
+	<img src="https://ami.in2p3.fr/docs/images/logo_lpsc.png" alt="LPSC" height="72" />
 </a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="http://www.in2p3.fr/" target="_blank">
-	<img src="http://ami.in2p3.fr/docs/images/logo_in2p3.png" alt="IN2P3" height="72" />
+	<img src="https://ami.in2p3.fr/docs/images/logo_in2p3.png" alt="IN2P3" height="72" />
 </a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="http://www.univ-grenoble-alpes.fr/" target="_blank">
-	<img src="http://ami.in2p3.fr/docs/images/logo_uga.png" alt="UGA" height="72" />
+	<img src="https://ami.in2p3.fr/docs/images/logo_uga.png" alt="UGA" height="72" />
 </a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="http://home.cern/" target="_blank">
-	<img src="http://ami.in2p3.fr/docs/images/logo_atlas.png" alt="CERN" height="72" />
+	<img src="https://ami.in2p3.fr/docs/images/logo_atlas.png" alt="CERN" height="72" />
 </a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="http://atlas.cern/" target="_blank">
-	<img src="http://ami.in2p3.fr/docs/images/logo_cern.png" alt="CERN" height="72" />
+	<img src="https://ami.in2p3.fr/docs/images/logo_cern.png" alt="CERN" height="72" />
 </a>
 
 AMI Full Stack Demo
