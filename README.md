@@ -13,7 +13,7 @@
 </a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="http://home.cern/" target="_blank">
-	<img src="http://www.cern.ch/ami/images/logo_atlas.png" alt="CERN" height="72" />
+	<img src="http://ami.in2p3.fr/docs/images/logo_atlas.png" alt="CERN" height="72" />
 </a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="http://atlas.cern/" target="_blank">
@@ -35,6 +35,8 @@ docker compose version
 ```
 
 ```bash
+sudo su # needed for Linux but not for OSX
+
 git clone https://github.com/ami-team/AMIDemo.git
 cd AMIDemo
 docker compose up
@@ -48,8 +50,8 @@ Web interfaces:
 Web service:
   - `http://localhost:666/AMI/FrontEnd
 
-MQTT:
-- `ws://localhost:663/ws`
+MQTT service:
+  - `ws://localhost:663/ws`
 
 JWT issuer for demo:
   - `AMI-Demo`

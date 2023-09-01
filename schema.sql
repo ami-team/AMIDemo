@@ -17077,7 +17077,7 @@ CREATE TABLE `router_task` (
 --
 
 INSERT INTO `router_task` (`id`, `name`, `description`, `command`, `commaSeparatedLocks`, `locked`, `oneShot`, `priority`, `timeStep`, `serverName`, `running`, `success`, `report`, `stdout`, `stderr`, `lastStartDate`, `lastStopDate`) VALUES
-(24, 'recurent-task-1', 'example of recurent task', 'echo \"Hello World! I am recurent-task-1 NULL\"', '', 0, 0, 0, 10, 'DEMO', 0, 1, '{}', 'Hello World! I am recurent-task-1 NULL\n', '', 1653056739, 1653056740);
+(24, 'recurent-task-1', 'example of recurent task', 'echo \"Hello World! I am recurent-task-1\"', '', 0, 0, 0, 10, 'DEMO', 0, 1, '{}', 'Hello World! I am recurent-task-1 NULL\n', '', 1653056739, 1653056740);
 
 --
 -- Index pour les tables déchargées
