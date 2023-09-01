@@ -46,7 +46,10 @@ Web interfaces:
   - phpMyAdmin interfaces: http://localhost:661/ (username: root, password root)
 
 Web service:
-  - http://localhost:666/AMI/FrontEnd
+  - `http://localhost:666/AMI/FrontEnd
+
+MQTT:
+- `ws://localhost:663/ws`
 
 JWT issuer for demo:
   - `AMI-Demo`
