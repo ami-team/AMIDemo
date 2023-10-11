@@ -43,7 +43,7 @@ docker compose up
 ```
 
 Web interfaces:
-  - Metadata interfaces: http://localhost:667/ (username: admin, password demo)
+  - Metadata interfaces: http://localhost:667/ (username: admin, password demo) or (username: user, password demo)
   - Pipeline interfaces: http://localhost:664/
   - phpMyAdmin interfaces: http://localhost:661/ (username: root, password root)
 
