@@ -92,6 +92,7 @@ Developers
 ==========
 
 * [Jérôme ODIER](https://annuaire.in2p3.fr/4121-4467/jerome-odier) ([CNRS/LPSC](http://lpsc.in2p3.fr/))
+* [Fabian Lambert](https://annuaire.in2p3.fr/3087-3350/fabian-lambert) ([CNRS/LPSC](http://lpsc.in2p3.fr/))
 
 [License]:http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 [License img]:https://img.shields.io/badge/license-CeCILL-blue.svg
