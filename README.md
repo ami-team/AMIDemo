@@ -1,5 +1,9 @@
 [![][License img]][License]
 
+<a href="http://ami-ecosystem.in2p3.fr/" target="_blank">
+	<img src="./assets/logo.svg" alt="AMI" height="64" />
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="http://lpsc.in2p3.fr/" target="_blank">
 	<img src="./assets/logo-lpsc.svg" alt="LPSC" height="72" />
 </a>
