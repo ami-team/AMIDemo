@@ -18,7 +18,7 @@ AMI Full Stack Demo
 This is a "docker-compose"-based demo of the full AMI ecosystem. It was originally developed for the A Toroidal LHC ApparatuS (ATLAS) experiment, one of the two general-purpose detectors at the Large Hadron Collider (LHC).
 
 Usage
-=====
+-----
 
 Make sure that `git` and `Docker Compose V2` are installed.
 
@@ -41,7 +41,7 @@ cd AMIDemo
 docker compose up
 ```
 Endpoints
-=========
+---------
 
 Web interfaces:
   - Metadata interfaces: http://localhost:667/ (username: admin, password demo) or (username: user, password demo)
@@ -55,7 +55,7 @@ MQTT service:
   - `ws://localhost:663/ws`
 
 Issuer/Token
-============
+------------
 
 JWT issuer for demo:
   - `AMI-Demo`
@@ -67,7 +67,7 @@ JWT token for demo:
   - `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBTUktRGVtbyIsImlzcyI6IkFNSS1EZW1vIn0.WZ7Xs4WhO9QRL4D_vUSozyOesBbDNcnYEnfBqnPobzJKWwousQc_bhyVsgITFJ0ypxHzb4KnVg73X68qYI5ZOg`
 
 Postinstall configuration
-==========================
+--------------------------
 
 1. Open the AMI demo page in your browser: http://localhost:667/
 2. Sign-In as admin (username: admin, password demo).
@@ -81,7 +81,7 @@ Postinstall configuration
 10. Click on the `Apply` blue button.
 
 Developers
-==========
+----------
 
 * [Jérôme ODIER](https://annuaire.in2p3.fr/4121-4467/jerome-odier) ([CNRS/LPSC](http://lpsc.in2p3.fr/))
 * [Fabian Lambert](https://annuaire.in2p3.fr/3087-3350/fabian-lambert) ([CNRS/LPSC](http://lpsc.in2p3.fr/))
