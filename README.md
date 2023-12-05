@@ -11,10 +11,6 @@
 <a href="http://www.univ-grenoble-alpes.fr/" target="_blank">
 	<img src="./assets/logo-uga.svg" alt="UGA" height="72" />
 </a>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="http://home.cern/" target="_blank">
-	<img src="https://ami.in2p3.fr/docs/images/logo_atlas.png" alt="CERN" height="72" />
-</a>
 
 AMI Full Stack Demo
 ===================
