@@ -1,21 +1,17 @@
 [![][License img]][License]
 
 <a href="http://lpsc.in2p3.fr/" target="_blank">
-	<img src="./assets/logo.svg" alt="AMI" height="72" />
-</a>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="http://lpsc.in2p3.fr/" target="_blank">
 	<img src="./assets/logo-lpsc.svg" alt="LPSC" height="72" />
 </a>
-&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="http://www.in2p3.fr/" target="_blank">
 	<img src="./assets/logo-in2p3.svg" alt="IN2P3" height="72" />
 </a>
-&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="http://www.univ-grenoble-alpes.fr/" target="_blank">
 	<img src="./assets/logo-uga.svg" alt="UGA" height="72" />
 </a>
-&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="http://home.cern/" target="_blank">
 	<img src="https://ami.in2p3.fr/docs/images/logo_atlas.png" alt="CERN" height="72" />
 </a>
