@@ -33,10 +33,17 @@ Make sure that `git` and `Docker Compose V2` are installed.
 ```bash
 docker compose version
 ```
+For Linux installation, create eventually the `docker group` and add the current user to it.
+(see https://docs.docker.com/engine/install/linux-postinstall/)
 
 ```bash
-sudo su # needed for Linux but not for OSX
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+```
 
+Then pull the AMI demo from git
+```bash
 git clone https://github.com/ami-team/AMIDemo.git
 cd AMIDemo
 docker compose up
