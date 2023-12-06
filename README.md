@@ -70,20 +70,6 @@ JWT secret for demo:
 JWT token for demo:
   - `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBTUktRGVtbyIsImlzcyI6IkFNSS1EZW1vIn0.WZ7Xs4WhO9QRL4D_vUSozyOesBbDNcnYEnfBqnPobzJKWwousQc_bhyVsgITFJ0ypxHzb4KnVg73X68qYI5ZOg`
 
-Postinstall configuration
---------------------------
-
-1. Open the AMI demo page in your browser: http://localhost:667/
-2. Sign-In as admin (username: admin, password demo).
-3. From `Admin` menu select `Admin Dashboard`.
-4. Click on the `go` button of the `Conf. (Server node configuration)` box.
-5. Choose `MQTT` tab
-6. Define the mqtt_broker_endpoint as `ws://localhost:663/ws`
-7. Define the mqtt_jwt_issuer as `AMI-Demo`
-8. Define the mqtt_jwt_secret as `jNAvEVLbgnjYqT8E`
-9. Define the ami_pipeline_endpoint as `http://localhost:664/`
-10. Click on the `Apply` blue button.
-
 Developers
 ----------
 
