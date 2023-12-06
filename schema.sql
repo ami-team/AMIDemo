@@ -16364,6 +16364,16 @@ CREATE TABLE `router_config` (
   `modifiedBy` varchar(128) COLLATE utf8mb3_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
+--
+-- Déchargement des données de la table `router_config`
+--
+
+INSERT INTO `router_config` (`id`, `paramName`, `paramValue`, `created`, `createdBy`, `modified`, `modifiedBy`) VALUES
+(1, 'xgZE+kbU8lH6+BVPfb++/Itktm/IwmBNKXt24Ksm4N0=', 'MQu9eJnyxmf3N2+3OPGZVi1op2CvnJyDW6HL0wtn1A8=', '2023-12-06 09:45:40', 'admin', '2023-12-06 09:45:40', 'admin'),
+(2, '1m4qr7ovX48u4I8+MfmvsQ==', 'PIoTxfJ+FGwivE9n0ea3bw==', '2023-12-06 09:45:40', 'admin', '2023-12-06 09:45:40', 'admin'),
+(3, 'nhDZkZq6GzvmwP6zGvd/XA==', 'w2vWqKssfD8O9yUylazd4eJf0ljYtGu9f1hXa67i+v4=', '2023-12-06 09:45:40', 'admin', '2023-12-06 09:45:40', 'admin'),
+(4, 'Kwj1P1QXsCR+k4hmp5IPaQ+5tNE7t37fFUFFmoNagbg=', 'D5mpY+NCGUHz1li9ADFcucRC3Pp7FBrqK413XQZmHr4=', '2023-12-06 09:45:40', 'admin', '2023-12-06 09:45:40', 'admin');
+
 -- --------------------------------------------------------
 
 --
