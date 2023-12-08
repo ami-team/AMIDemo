@@ -49,7 +49,9 @@ services:
     depends_on:
       - mosquitto
     volumes:
-      - ./data-pipeline/:/data/
+      - ./data-pipeline/:/AMIPipeline/data/
+    environment:
+      NODE_RED_CREDENTIAL_SECRET: BHbKwRM4lgHWJxFE
     ports:
       - "664:1880"
     restart: unless-stopped
