@@ -16403,19 +16403,17 @@ INSERT INTO `router_converter` (`id`, `xslt`, `mime`) VALUES
 --
 
 CREATE TABLE `router_dashboard` (
-  `id` int(11) NOT NULL,
-  `control` varchar(128) COLLATE utf8mb3_bin NOT NULL,
-  `params` text COLLATE utf8mb3_bin NOT NULL,
-  `settings` text COLLATE utf8mb3_bin NOT NULL,
-  `transparent` tinyint(1) NOT NULL DEFAULT 0,
-  `autoRefresh` tinyint(1) NOT NULL DEFAULT 1,
-  `x` int(11) NOT NULL DEFAULT 0,
-  `y` int(11) NOT NULL DEFAULT 0,
-  `width` int(11) NOT NULL DEFAULT 0,
-  `height` int(11) NOT NULL DEFAULT 0,
-  `owner` varchar(128) COLLATE utf8mb3_bin NOT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `id` INT NOT NULL,
+  `hash` VARCHAR(16) NOT NULL,
+  `name` VARCHAR(128) NOT NULL,
+  `rank` INT NOT NULL DEFAULT 0,
+  `json` TEXT NOT NULL,
+  `shared` TINYINT(1) NOT NULL DEFAULT 0,
+  `archived` TINYINT(1) NOT NULL DEFAULT 0,
+  `owner` VARCHAR(128) NOT NULL,
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- --------------------------------------------------------
