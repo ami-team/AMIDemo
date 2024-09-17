@@ -1,0 +1,72 @@
+<h4>DB schema</h4>
+<div style="text-align: center">
+    <img src="./docs/schema.png" alt="db schema" width="1200"/>
+</div>
+<h4>MQL constraint syntax</h4>
+<p><i class="bi bi-arrow-right-circle-fill"></i> Customers who preferring rock music</p>
+<p>AMI command</p>
+<pre>
+    BrowseQuery -catalog="demo" -entity="Customer"
+    -mql="SELECT `demo`.`Customer`* WHERE [`demo`.`Genre`.`Name`{`demo`.`Preference`.`CustomerId`} = 'Rock']"
+</pre>
+<p>MQL (from catalog = `demo` and entity = `Customer`)</p>
+<pre>
+    SELECT `demo`.`Customer`.* WHERE [`demo`.`Genre`.`Name`{`demo`.`Preference`.`CustomerId`} = 'Rock']
+</pre>
+<p>SQL</p>
+<pre>
+    SELECT
+    *
+    FROM `demo`.`Customer`
+    WHERE
+    (
+        `demo`.`Customer`.`CustomerId` IN (
+            SELECT
+                `demo`.`Customer`.`CustomerId`
+                FROM
+                `demo`.`Genre`,
+                `demo`.`Preference`,
+                `demo`.`Customer`
+            WHERE
+                (`demo`.`Genre`.`Name` = 'Rock')
+                AND `demo`.`Preference`.`CustomerId` = `demo`.`Customer`.`CustomerId`
+                AND `demo`.`Preference`.`GenreId` = `demo`.`Genre`.`GenreId`
+        )
+    )
+</pre>
+
+<p><i class="bi bi-arrow-right-circle-fill"></i> Customers who bought rock music</p>
+<p>AMI command</p>
+<pre>
+    BrowseQuery -catalog="demo" -entity="Customer"
+    -mql="SELECT `demo`.`Customer`.* WHERE [`demo`.`Genre`.`Name`{`demo`.`Invoice`.`CustomerId`} = 'Rock']"
+</pre>
+<p>MQL (from catalog = `demo` and entity = `Customer`)</p>
+<pre>
+    SELECT `demo`.`Customer`.* WHERE [`demo`.`Genre`.`Name`{`demo`.`Invoice`.`CustomerId`} = 'Rock']
+</pre>
+<p>SQL</p>
+<pre>
+    SELECT
+    *
+    FROM `demo`.`Customer`
+    WHERE
+    (
+        `demo`.`Customer`.`CustomerId` IN (
+            SELECT
+                `demo`.`Customer`.`CustomerId`
+            FROM
+                `demo`.`Genre`,
+                `demo`.`Invoice`,
+                `demo`.`InvoiceLine`,
+                `demo`.`Customer`,
+                `demo`.`Track`
+            WHERE
+                (`demo`.`Genre`.`Name` = 'Rock')
+                AND `demo`.`InvoiceLine`.`InvoiceId` = `demo`.`Invoice`.`InvoiceId`
+                AND `demo`.`Invoice`.`CustomerId` = `demo`.`Customer`.`CustomerId`
+                AND `demo`.`InvoiceLine`.`TrackId` = `demo`.`Track`.`TrackId`
+                AND `demo`.`Track`.`GenreId` = `demo`.`Genre`.`GenreId`
+        )
+    )
+</pre>

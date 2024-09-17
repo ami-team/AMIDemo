@@ -1,0 +1,51 @@
+<h4>DB schema</h4>
+<div style="text-align: center">
+    <img src="./docs/schema.png" alt="db schema" width="1200"/>
+</div>
+<h4>MQL isolation syntax</h4>
+<p><i class="bi bi-arrow-right-circle-fill"></i> Track present in 2 playlists</p>
+<p>AMI command</p>
+<pre>
+    BrowseQuery -catalog="demo" -entity="Track"
+    -mql="SELECT `demo`.`Track`.* WHERE [`demo`.`Playlist`.`Name` = '90’s Music'] AND [`demo`.`Playlist`.`Name` = 'Heavy Metal Classic']"
+</pre>
+<p>MQL (from catalog = `demo` and entity = `Track`)</p>
+<pre>
+    SELECT `demo`.`Track`.* WHERE [`demo`.`Playlist`.`Name` = '90’s Music'] AND [`demo`.`Playlist`.`Name` = 'Heavy Metal Classic']
+</pre>
+<p>SQL</p>
+<pre>
+    SELECT
+    *
+    FROM `demo`.`Track`
+    WHERE
+    (
+        `demo`.`Track`.`TrackId` IN (
+            SELECT
+                `demo`.`Track`.`TrackId`
+            FROM
+                `demo`.`Playlist`,
+                `demo`.`PlaylistTrack`,
+                `demo`.`Track`
+            WHERE
+                (`demo`.`Playlist`.`Name` = '90’s Music')
+                AND `demo`.`PlaylistTrack`.`TrackId` = `demo`.`Track`.`TrackId`
+                AND `demo`.`PlaylistTrack`.`PlaylistId` = `demo`.`Playlist`.`PlaylistId`
+        )
+    )
+    AND
+    (
+        `demo`.`Track`.`TrackId` IN (
+            SELECT
+                `demo`.`Track`.`TrackId`
+            FROM
+                `demo`.`Playlist`,
+                `demo`.`PlaylistTrack`,
+                `demo`.`Track`
+            WHERE
+                (`demo`.`Playlist`.`Name` = 'Heavy Metal Classic')
+                AND `demo`.`PlaylistTrack`.`TrackId` = `demo`.`Track`.`TrackId`
+                AND `demo`.`PlaylistTrack`.`PlaylistId` = `demo`.`Playlist`.`PlaylistId`
+        )
+    )
+</pre>
